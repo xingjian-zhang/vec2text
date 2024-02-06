@@ -13,6 +13,12 @@ pip install vec2text
 
 [Link to Colab Demo](https://colab.research.google.com/drive/14RQFRF2It2Kb8gG3_YDhP_6qE0780L8h?usp=sharing)
 
+### Support for Azure Open AI
+Please add the following environment variables to your system:
+```bash
+export AZURE_OPENAI_EMBEDDING_MODEL="embedding-api"
+```
+
 ### Development
 
 If you're training a model you'll need to set up nltk:
