@@ -8,7 +8,7 @@ As Much As Text".
 To get started, install this on PyPI:
 
 ```bash
-pip install vec2text
+pip install -e .
 ```
 
 [Link to Colab Demo](https://colab.research.google.com/drive/14RQFRF2It2Kb8gG3_YDhP_6qE0780L8h?usp=sharing)
