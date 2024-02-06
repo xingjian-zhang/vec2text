@@ -199,9 +199,13 @@ def get_embeddings_openai_manifest(
 def get_embeddings_openai_vanilla_multithread(
     text_list, model="text-embedding-ada-002"
 ) -> list:
-    from openai import OpenAI
+    from openai import AzureOpenAI, OpenAI, OpenAIError
 
-    client = OpenAI()
+    try:
+        client = OpenAI()
+    except OpenAIError:
+        client = AzureOpenAI()
+        model = os.environ.get("AZURE_OPENAI_EMBEDDING_MODEL", model)
 
     # print(f"running openai on text_list of length {len(text_list)}, first element '{text_list[0]}'")
 
@@ -235,9 +239,13 @@ def get_embeddings_openai_vanilla(text_list, model="text-embedding-ada-002") -> 
     # embeddings model: https://platform.openai.com/docs/guides/embeddings/use-cases
     #    api ref: https://platform.openai.com/docs/api-reference/embeddings/create
     # TODO: set up a caching system somehow.
-    from openai import OpenAI
+    from openai import AzureOpenAI, OpenAI, OpenAIError
 
-    client = OpenAI()
+    try:
+        client = OpenAI()
+    except OpenAIError:
+        client = AzureOpenAI()
+        model = os.environ.get("AZURE_OPENAI_EMBEDDING_MODEL", model)
 
     # print(f"running openai on text_list of length {len(text_list)}, first element '{text_list[0]}'")
     batches = math.ceil(len(text_list) / 128)
